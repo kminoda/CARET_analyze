@@ -82,8 +82,8 @@ class Util:
         filtered = Util.filter_items(condition, items)
         if len(filtered) == 0:
             raise ItemNotFoundError('Failed find item.')
-        if len(filtered) >= 2:
-            raise MultipleItemFoundError('Failed to identify item.')
+        # if len(filtered) >= 2:
+        #     raise MultipleItemFoundError('Failed to identify item.')
 
         return filtered[0]
 
