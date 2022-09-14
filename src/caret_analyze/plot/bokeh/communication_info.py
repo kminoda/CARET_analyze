@@ -27,7 +27,7 @@ class CommunicationLatencyPlot(CommunicationTimeSeriesPlot):
         self,
         *communications: Communication
     ) -> None:
-        self._communications = communications
+        super().__init__(*communications)
 
     def _to_dataframe_core(
         self,
@@ -52,7 +52,7 @@ class CommunicationLatencyPlot(CommunicationTimeSeriesPlot):
 
         latency_df = pd.DataFrame(data={
             'rclcpp_publish_timestamp [ns]': df.iloc[:, 0],
-            'latency [ms]': (df.iloc[:, 3] - df.iloc[:, 0]) * 10**(-6)
+            'latency [ms]': (df.iloc[:, -1] - df.iloc[:, 0]) * 10**(-6)
         })
         latency_df = add_top_level_column(latency_df,
                                           self._get_comm_name(communication))
@@ -66,7 +66,7 @@ class CommunicationPeriodPlot(CommunicationTimeSeriesPlot):
         self,
         *communications: Communication
     ) -> None:
-        self._communications = communications
+        super().__init__(*communications)
 
     def _to_dataframe_core(
         self,
@@ -106,7 +106,7 @@ class CommunicationFrequencyPlot(CommunicationTimeSeriesPlot):
         self,
         *communications: Communication
     ) -> None:
-        self._communications = communications
+        super().__init__(*communications)
 
     def _to_dataframe_core(
         self,

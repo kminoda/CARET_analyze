@@ -32,6 +32,12 @@ logger = getLogger(__name__)
 
 class CommunicationTimeSeriesPlot(metaclass=ABCMeta):
 
+    def __init__(
+        self,
+        *communications: Communication
+    ) -> None:
+        self._communications = communications
+
     def show(
         self,
         xaxis_type: str = 'system_time',
